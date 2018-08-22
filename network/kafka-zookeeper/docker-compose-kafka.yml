@@ -16,7 +16,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == linuxkit-025000000001
+          - node.hostname == org1
     hostname: kafka0
     image: hyperledger/fabric-kafka
     # Give network alias
@@ -45,7 +45,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == linuxkit-025000000001
+          - node.hostname == org1
     hostname: kafka1
     image: hyperledger/fabric-kafka
     # Give network alias
@@ -74,7 +74,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == linuxkit-025000000001
+          - node.hostname == org1
     hostname: kafka2
     image: hyperledger/fabric-kafka
     # Give network alias
@@ -103,7 +103,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == linuxkit-025000000001
+          - node.hostname == org1
     hostname: kafka3
     image: hyperledger/fabric-kafka
     # Give network alias

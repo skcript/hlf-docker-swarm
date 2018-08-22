@@ -17,7 +17,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org.entity.2
+                    - node.hostname == org1
         image: hyperledger/fabric-orderer:x86_64-1.1.0
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
         command: orderer
