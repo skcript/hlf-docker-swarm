@@ -54,7 +54,7 @@ services:
           - CORE_LOGGING_LEVEL=CRITICAL
           - CORE_PEER_ID=cli.org1.example.com
           - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-          - CORE_PEER_LOCALMSPID=CHMSP
+          - CORE_PEER_LOCALMSPID=Org1MSP
           - CORE_CHAINCODE_KEEPALIVE=10
           - CORE_PEER_TLS_ENABLED=true
           - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
