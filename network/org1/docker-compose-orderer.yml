@@ -8,7 +8,7 @@ networks:
 
 services:
 
-    orderer_ch:
+    orderer_org1:
         deploy:
             replicas: 1
             restart_policy:
