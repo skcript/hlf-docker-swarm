@@ -4,7 +4,6 @@ source $GLOBAL_ENV_LOCATION
 
 set -ev
 
-echo $CHANNEL_NAME
 # Create the channel
 docker exec "$CLI_NAME" peer channel create -o "$ORDERER_NAME":7050 -c "$CHANNEL_NAME" -f "$CHANNEL_TX_LOCATION" --tls --cafile $ORDERER_CA
 
