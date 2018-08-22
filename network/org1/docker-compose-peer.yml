@@ -8,7 +8,7 @@ networks:
 
 services:
     
-    peer0_ch:
+    peer0_org1:
         deploy:
             replicas: 1
             restart_policy:
@@ -30,9 +30,9 @@ services:
             - CORE_PEER_PROFILE_ENABLED=true
             - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
             #- CORE_LEDGER_STATE_STATEDATABASE=LevelDB
-            - CORE_LOGGING_LEVEL=CRITICAL
+            - CORE_LOGGING_LEVEL=DEBUG
             - CORE_LOGGING_GOSSIP=${CORE_LOGGING_GOSSIP}
-            - CORE_LOGGING_MSP=CRITICAL
+            - CORE_LOGGING_MSP=DEBUG
             # - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
             # TLS settings
             - CORE_PEER_TLS_ENABLED=true
@@ -87,9 +87,9 @@ services:
             - CORE_PEER_PROFILE_ENABLED=true
             - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
             #- CORE_LEDGER_STATE_STATEDATABASE=LevelDB
-            - CORE_LOGGING_LEVEL=CRITICAL
+            - CORE_LOGGING_LEVEL=DEBUG
             - CORE_LOGGING_GOSSIP=${CORE_LOGGING_GOSSIP}
-            - CORE_LOGGING_MSP=CRITICAL
+            - CORE_LOGGING_MSP=DEBUG
             # - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
             # TLS settings
             - CORE_PEER_TLS_ENABLED=true
