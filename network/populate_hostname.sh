@@ -38,6 +38,4 @@ sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ENTITY_HOSTNAME_2/g" $P
 sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ENTITY_HOSTNAME_2/g" $SERVICE_ORG3_COMPOSE_PATH
 sed "$FLAG" "s#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/.*#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/$ORG3_CA_PATH#g" $SERVICE_ORG3_COMPOSE_PATH
 
-
-
 rm org*/**.ymlt
