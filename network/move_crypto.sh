@@ -5,7 +5,6 @@ rm -rf mkdir /var/mynetwork/*
 
 mkdir -p /var/mynetwork/chaincode
 mkdir -p /var/mynetwork/certs
-mkdir -p /var/mynetwork/scripts
 mkdir -p /var/mynetwork/bin
 mkdir -p /var/mynetwork/fabric-src
 
@@ -16,5 +15,4 @@ cd -
 cp -R crypto-config /var/mynetwork/certs/
 cp -R config /var/mynetwork/certs/
 cp -R ../chaincodes/* /var/mynetwork/chaincode/
-cp -R extra-scripts/* /var/mynetwork/scripts/
 cp -R bin/* /var/mynetwork/bin/
