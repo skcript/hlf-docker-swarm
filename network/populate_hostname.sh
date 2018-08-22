@@ -1,3 +1,4 @@
+#!/bin/bash
 
 set -ev
 
@@ -5,12 +6,13 @@ ENV_LOCATION=$PWD/.env
 echo $ENV_LOCATION
 source $ENV_LOCATION
 
-ARCH=$(uname -s | grep Darwin)
-if [ "$ARCH" == "Darwin" ]; then
-  FLAG="-it"
-else
-  FLAG="-i"
-fi
+# ARCH=$(uname -s | grep Darwin)
+# if [ "$ARCH" == "Darwin" ]; then
+#   FLAG="-it"
+# else
+#   FLAG="-i"
+# fi
+FLAG="-i"
 
 # Zookeeper + Kafka + Peer0 - Machine 1
 ORG1_CA_PATH=$(ls /var/mynetwork/certs/crypto-config/peerOrganizations/org1.example.com/ca/ | grep "_sk")
