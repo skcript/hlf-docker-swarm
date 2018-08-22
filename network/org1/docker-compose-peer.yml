@@ -57,13 +57,13 @@ services:
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
         depends_on:
             - couchdb0
+        ports:
+            - 7051:7051
+            - 7053:7053
         networks:
           skcript:
             aliases:
                 - peer0.org1.example.com
-        ports:
-          - 7051:7051
-          - 7053:7053
 
      peer1_org1:
         deploy:
