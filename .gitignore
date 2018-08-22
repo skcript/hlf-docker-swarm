@@ -1,0 +1,7 @@
+./network/bin
+./network/bin-linux
+./simplenetwork/bin
+./simplenetwork/bin-linux
+node_modules/
+.DS_Store
+**/*/*.ymlt

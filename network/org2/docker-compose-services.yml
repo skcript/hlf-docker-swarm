@@ -1,0 +1,66 @@
+
+version: '3.2'
+
+networks:
+    skcript:
+        external: 
+            name: skcript
+
+services:
+
+    ca_org2:
+        networks:
+            skcript:
+                aliases:
+                    - ca_org2
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == org.entity.1
+        image: hyperledger/fabric-ca:x86_64-1.1.0
+        hostname: ca.org2.example.com
+        environment:
+            - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+            - FABRIC_CA_SERVER_CA_NAME=ca_org2
+            - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/378901a7cf90f3278299ae457937516ad5756a2128f6d9039ed5296ddd99a31b_sk
+        ports:
+            - "10054:7054"   
+        command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+        volumes:
+            - /var/mynetwork/certs/crypto-config/peerOrganizations/org2.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+
+    couchdb0_org2:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == org.entity.1
+        image: hyperledger/fabric-couchdb:x86_64-0.4.6
+        hostname: couchdb0_org2
+        networks:
+           - skcript
+
+    couchdb1_org2:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == org.entity.1
+        image: hyperledger/fabric-couchdb:x86_64-0.4.6
+        hostname: couchdb1_org2
+        networks:
+           - skcript

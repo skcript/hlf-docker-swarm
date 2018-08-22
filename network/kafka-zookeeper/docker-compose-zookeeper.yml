@@ -1,0 +1,68 @@
+version: '3'
+#
+networks:
+  skcript:
+    # If network is created with deplyment, Chaincode container cannot connect to network
+    external:
+      name: skcript
+
+services:
+  zookeeper0:
+    hostname: zookeeper0.example.com
+    image: hyperledger/fabric-zookeeper
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    # Give network alias
+    networks:
+      - skcript
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - ZOO_MY_ID=1
+      - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
+
+  zookeeper1:
+    hostname: zookeeper1.example.com
+    environment:
+      - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - ZOO_MY_ID=2
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    image: hyperledger/fabric-zookeeper
+    # Give network alias
+    networks:
+      - skcript
+
+  zookeeper2:
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    hostname: zookeeper2.example.com
+    image: hyperledger/fabric-zookeeper
+    # Give network alias
+    networks:
+      - skcript
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - ZOO_MY_ID=3
+      - ZOO_SERVERS=server.1=zookeeper0:2888:3888 server.2=zookeeper1:2888:3888 server.3=zookeeper2:2888:3888

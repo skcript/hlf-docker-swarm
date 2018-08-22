@@ -1,0 +1,124 @@
+version: '3.2'
+#
+networks:
+  skcript:
+    # If network is created with deplyment, Chaincode container cannot connect to network
+    external:
+      name: skcript
+
+services:
+  kafka0:
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    hostname: kafka0
+    image: hyperledger/fabric-kafka
+    # Give network alias
+    networks:
+      skcript:
+        aliases:
+          - kafka0
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - KAFKA_BROKER_ID=0
+      - KAFKA_MIN_INSYNC_REPLICAS=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=36000
+      - KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS=36000
+
+  kafka1:
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    hostname: kafka1
+    image: hyperledger/fabric-kafka
+    # Give network alias
+    networks:
+      skcript:
+        aliases:
+          - kafka1
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - KAFKA_BROKER_ID=1
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA.MIN_INSYNC_REPLICAS=2
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=36000
+      - KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS=36000
+
+  kafka2:
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    hostname: kafka2
+    image: hyperledger/fabric-kafka
+    # Give network alias
+    networks:
+      skcript:
+        aliases:
+          - kafka2
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - KAFKA_BROKER_ID=2
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA.MIN_INSYNC_REPLICAS=2
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=36000
+      - KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS=36000
+
+  kafka3:
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.hostname == linuxkit-025000000001
+    hostname: kafka3
+    image: hyperledger/fabric-kafka
+    # Give network alias
+    networks:
+      skcript:
+        aliases:
+          - kafka3
+    environment:
+      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
+      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - KAFKA_BROKER_ID=3
+      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
+      - KAFKA.MIN_INSYNC_REPLICAS=2
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
+      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=36000
+      - KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS=36000
