@@ -70,7 +70,6 @@ services:
             - /var/mynetwork/fabric-src/hyperledger/fabric:/opt/gopath/src/github.com/hyperledger/fabric
             - /var/mynetwork/certs/crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto
             - /var/mynetwork/certs/config:/var/hyperledger/config
-            - /var/mynetwork/scripts:/var/scripts
             - /var/mynetwork/bin/:/var/bin
             # - /var/mynetwork/bin/jq:/usr/local/bin/jq
         networks:
