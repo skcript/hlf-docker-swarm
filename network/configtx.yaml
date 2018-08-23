@@ -16,6 +16,10 @@ Profiles:
                     - *Org1
                     - *Org2
                     - *Org3
+                    - *Org4
+                    - *Org5
+                    - *Org6
+                    - *Org7
     
     MyChannel:
         Consortium: MyConsortium
@@ -25,6 +29,10 @@ Profiles:
                 - *Org1
                 - *Org2
                 - *Org3
+                - *Org4
+                - *Org5
+                - *Org6
+                - *Org7
             
             Capabilities:
                 <<: *ApplicationCapabilities
@@ -59,6 +67,36 @@ Organizations:
             - Host: peer0.org3.example.com
               Port: 7051
 
+    - &Org4
+        Name: Org4MSP
+        ID: Org4MSP
+        MSPDir: crypto-config/peerOrganizations/org4.example.com/msp
+        AnchorPeers:
+            - Host: peer0.org4.example.com
+              Port: 7051
+    - &Org5
+        Name: Org5MSP
+        ID: Org5MSP
+        MSPDir: crypto-config/peerOrganizations/org5.example.com/msp
+        AnchorPeers:
+            - Host: peer0.org5.example.com
+              Port: 7051              
+
+    - &Org6
+        Name: Org6MSP
+        ID: Org6MSP
+        MSPDir: crypto-config/peerOrganizations/org6.example.com/msp
+        AnchorPeers:
+            - Host: peer0.org6.example.com
+              Port: 7051
+    - &Org7
+        Name: Org7MSP
+        ID: Org7MSP
+        MSPDir: crypto-config/peerOrganizations/org7.example.com/msp
+        AnchorPeers:
+            - Host: peer0.org7.example.com
+              Port: 7051
+
 
 Orderer: &OrdererDefaults
     OrdererType: kafka
@@ -66,6 +104,11 @@ Orderer: &OrdererDefaults
         - orderer0.example.com:7050
         - orderer1.example.com:7050
         - orderer2.example.com:7050
+        - orderer3.example.com:7050
+        - orderer4.example.com:7050
+        - orderer5.example.com:7050
+        - orderer6.example.com:7050
+
     BatchTimeout: 2s
     BatchSize:
         MaxMessageCount: 10
