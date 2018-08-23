@@ -4,7 +4,7 @@ GLOBAL_ENV_LOCATION=$PWD/.env
 source $GLOBAL_ENV_LOCATION
 set -ev 
 
-# CH org
+# ORG 1
 
 docker stack deploy -c "$ORDERER0_COMPOSE_PATH" hlf_orderer
 sleep 3
