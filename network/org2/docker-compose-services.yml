@@ -21,7 +21,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-ca:x86_64-1.1.0
         hostname: ca.org2.example.com
         environment:
@@ -44,7 +44,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-couchdb:x86_64-0.4.6
         hostname: couchdb0_org2
         networks:
@@ -59,7 +59,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-couchdb:x86_64-0.4.6
         hostname: couchdb1_org2
         networks:
