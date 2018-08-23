@@ -64,8 +64,8 @@ services:
         aliases:
           - peer0.org2.example.com
     ports:
-      - 13051:7051
-      - 13053:7053
+      - 9051:7051
+      - 9053:7053
       
   peer1_org2:
     deploy:
@@ -119,8 +119,8 @@ services:
     depends_on:
       - couchdb0
     ports:
-      - 14051:7051
-      - 14053:7053
+      - 10051:7051
+      - 10053:7053
     networks:
       skcript:
         aliases:

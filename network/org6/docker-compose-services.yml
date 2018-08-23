@@ -30,7 +30,7 @@ services:
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org6.example.com-cert.pem
             - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/0aef452fbaa704f94a8fa22643754d046cb5278674877cd63e2a393129408e4d_sk
         ports:
-            - 11054:7054   
+            - 13054:7054   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org6.example.com/ca/:/etc/hyperledger/fabric-ca-server-config

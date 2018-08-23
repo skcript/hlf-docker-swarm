@@ -58,7 +58,7 @@ services:
       - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls:/var/hyperledger/tls
       - /var/mynetwork/certs/config/:/var/hyperledger/config
     ports:
-      - 10050:7050
+      - 8050:7050
     networks:
       skcript:
         aliases:
