@@ -21,14 +21,14 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-ca:x86_64-1.1.0
         hostname: ca.org2.example.com
         environment:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org2
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/378901a7cf90f3278299ae457937516ad5756a2128f6d9039ed5296ddd99a31b_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/50415243691563f5071fec926fd998e37cd4f7670511cee352e6e14c70321e63_sk
         ports:
             - "8054:7054"   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -44,7 +44,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-couchdb:x86_64-0.4.6
         hostname: couchdb0_org2
         networks:
@@ -59,7 +59,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-couchdb:x86_64-0.4.6
         hostname: couchdb1_org2
         networks:

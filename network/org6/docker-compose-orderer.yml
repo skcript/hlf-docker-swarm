@@ -1,0 +1,65 @@
+
+version: '3.2'
+
+networks:
+    skcript:
+        external: 
+            name: skcript
+
+services:
+
+    orderer_org6:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == org1
+        image: hyperledger/fabric-orderer:x86_64-1.1.0
+        working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
+        command: orderer
+        hostname: orderer5.example.com
+        environment:
+            - ORDERER_GENERAL_LOGLEVEL=debug
+            - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+            - ORDERER_GENERAL_GENESISMETHOD=file
+            - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/config/genesis.block
+            - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+            - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/msp
+            - ORDERER_GENERAL_TLS_ENABLED=true
+            - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/tls/server.key
+            - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/tls/server.crt
+            - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/tls/ca.crt]
+            - ORDERER_HOME=/var/hyperledger/orderer
+            - ORDERER_GENERAL_LISTENPORT=7050
+            - ORDERER_GENERAL_LEDGERTYPE=ram
+            - CONFIGTX_ORDERER_BATCHSIZE_MAXMESSAGECOUNT=10
+            - CONFIGTX_ORDERER_BATCHTIMEOUT=2s
+            - CONFIGTX_ORDERER_ADDRESSES=[127.0.0.1:7050]
+            - ORDERER_TLS_CLIENTAUTHREQUIRED=false
+            - ORDERER_TLS_CLIENTROOTCAS_FILES=/var/hyperledger/users/Admin@example.com/tls/ca.crt
+            - ORDERER_TLS_CLIENTCERT_FILE=/var/hyperledger/users/Admin@example.com/tls/client.crt
+            - ORDERER_TLS_CLIENTKEY_FILE=/var/hyperledger/users/Admin@example.com/tls/client.key
+            - ORDERER_HOST=orderer5.example.com
+            - CONFIGTX_ORDERER_ORDERERTYPE=kafka
+            - CONFIGTX_ORDERER_KAFKA_BROKERS=[kafka0:9092,kafka1:9092,kafka2:9092,kafka3:9092]
+            - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+            - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
+            - ORDERER_KAFKA_VERBOSE=true
+            - ORDERER_GENERAL_GENESISPROFILE=SecureKafka
+            - ORDERER_ABSOLUTEMAXBYTES=10MB
+            - ORDERER_PREFERREDMAXBYTES=512KB
+        volumes:
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/users:/var/hyperledger/users
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/msp:/var/hyperledger/msp
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls:/var/hyperledger/tls
+            - /var/mynetwork/certs/config/:/var/hyperledger/config
+        ports:
+          - 13050:7050
+        networks:
+          skcript:
+            aliases:
+                - orderer5.example.com

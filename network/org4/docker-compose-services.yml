@@ -1,0 +1,66 @@
+
+version: '3.2'
+
+networks:
+    skcript:
+        external: 
+            name: skcript
+
+services:
+
+    ca_org4:
+        networks:
+            skcript:
+                aliases:
+                    - ca_org4
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == intel-sawtooth
+        image: hyperledger/fabric-ca:x86_64-1.1.0
+        hostname: ca.org4.example.com
+        environment:
+            - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+            - FABRIC_CA_SERVER_CA_NAME=ca_org4
+            - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org4.example.com-cert.pem
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/71e0b509cd2978a0634797e73f3c32f2c8caf6c02ef76f6ea9ff53b069c80d5e_sk
+        ports:
+            - 10054:7054   
+        command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+        volumes:
+            - /var/mynetwork/certs/crypto-config/peerOrganizations/org4.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+
+    couchdb0_org4:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == intel-sawtooth
+        image: hyperledger/fabric-couchdb:x86_64-0.4.6
+        hostname: couchdb0_org4
+        networks:
+           - skcript
+
+    couchdb1_org4:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == intel-sawtooth
+        image: hyperledger/fabric-couchdb:x86_64-0.4.6
+        hostname: couchdb1_org4
+        networks:
+           - skcript

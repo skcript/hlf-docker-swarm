@@ -18,7 +18,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == org1
+          - node.hostname == intel-sawtooth
     # Give network alias
     networks:
       - skcript
@@ -41,7 +41,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == org1
+          - node.hostname == intel-sawtooth
     image: hyperledger/fabric-zookeeper
     # Give network alias
     networks:
@@ -56,7 +56,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == org1
+          - node.hostname == intel-sawtooth
     hostname: zookeeper2.example.com
     image: hyperledger/fabric-zookeeper
     # Give network alias

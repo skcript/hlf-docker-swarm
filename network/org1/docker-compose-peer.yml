@@ -17,7 +17,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-peer:x86_64-1.1.0
         hostname: peer0.org1.example.com
         environment:
@@ -74,7 +74,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == org1
+                    - node.hostname == intel-sawtooth
         image: hyperledger/fabric-peer:x86_64-1.1.0
         hostname: peer1.org1.example.com
         environment:
