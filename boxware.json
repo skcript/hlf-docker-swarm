@@ -1,0 +1,12 @@
+{
+    "name": "HLF Docker Swarm",
+    "version": "1.0.0",
+    "description": "A Boilerplate for Hyperledger Fabric Deployment in multiple machines with docker swarm",
+    "repository": "https://github.com/skcript/hlf-docker-swarm",
+    "image": "boxware/ubuntu-base",
+    "hardware": "t2.medium",
+    "folder": "~/Desktop",
+    "commands": [
+        "",
+    ]
+}
